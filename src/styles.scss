@@ -1,0 +1,45 @@
+/* 1. Box Sizing Reset */
+@import 'primeicons/primeicons.css';
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Global Variables (Theme) */
+:root {
+  --primary-color: #3f51b5;
+  --text-main: #333333;
+  --text-muted: #666666;
+  --bg-light: #f4f7f6;
+  --font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* 3. Base Body Styles */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-main);
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 4. Smooth Heading Scales */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
