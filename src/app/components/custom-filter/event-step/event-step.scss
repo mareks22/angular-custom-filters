@@ -1,0 +1,54 @@
+.filter-step {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &-properties {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .step-name {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .step-icons {
+      display: flex;
+      gap: 0.6rem;
+
+      i {
+        cursor: pointer;
+        color: #666;
+        &:hover {
+          color: #333;
+        }
+      }
+    }
+
+    .step-number {
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+  }
+
+  .event-selectors {
+    display: flex;
+    gap: 1rem;
+
+    &_type {
+      width: 200px;
+
+    }
+  }
+
+  .event-select {
+  }
+}

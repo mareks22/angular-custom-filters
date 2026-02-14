@@ -1,0 +1,44 @@
+<div class="filter-step" [formGroup]="eventForm">
+  <div class="filter-step-header">
+    <div class="step-name">
+      <span class="step-number">{{ index + 1 }}. Step:</span>
+      <app-editable-label
+        formControlName="name"
+        [value]="'Event #' + (index + 1)"
+      ></app-editable-label>
+    </div>
+
+    <div class="step-icons">
+      <i (click)="onCopyEvent()" class="pi pi-copy"></i>
+      <i (click)="removeEvent.emit(index)" class="pi pi-trash"></i>
+    </div>
+  </div>
+
+  <div class="event-selectors">
+
+    <div>
+      <p-select
+        class="event-selectors_type"
+        size="small"
+        [filter]="true"
+        formControlName="type"
+        [options]="eventOptions"
+        (onChange)="onEventTypeChange($event)"
+        placeholder="Select Event"
+      ></p-select>
+    </div>
+
+
+    @if (eventType) {
+      <app-property-step
+        [eventForm]="eventForm"
+        [eventsList]="eventsList"
+        [eventType]="eventType"
+      ></app-property-step>
+    }
+
+  </div>
+
+
+</div>
+<p-divider class="divider"></p-divider>

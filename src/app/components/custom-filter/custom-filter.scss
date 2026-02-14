@@ -1,0 +1,25 @@
+.wrapper {
+  background-color: #f7f6fd;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px rgb(0 0 0 / 0.05);
+}
+
+.header {
+  display: flex;
+}
+
+.event-card {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px rgb(0 0 0 / 0.05);
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  &-footer {
+    display: flex;
+    justify-content: center;
+  }
+}

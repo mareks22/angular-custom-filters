@@ -1,0 +1,22 @@
+<div class="wrapper">
+  <h4 class="header">CUSTOMER FILTER</h4>
+  <form [formGroup]="form" (ngSubmit)="submit()" class="content">
+    <div class="event-card" formArrayName="events">
+      @for (event of events.controls; track event; let i = $index) {
+        <app-event-step
+          [eventForm]="asFormGroup(event)"
+          [index]="i"
+          [eventOptions]="eventOptions()"
+          [eventsList]="eventsList()"
+          (removeEvent)="removeEvent($event)"
+          (copyEvent)="copyEvent($event)"
+        ></app-event-step>
+      }
+
+      <div class="event-card-footer">
+        <p-button variant="text" type="button" (click)="addEvent()">+ Add Funnel Step</p-button>
+      </div>
+    </div>
+    <p-button type="submit" label="Apply filters"></p-button>
+  </form>
+</div>
