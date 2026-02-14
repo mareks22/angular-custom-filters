@@ -10,7 +10,8 @@
         </p-select>
 
         @if (properties.value[j].name) {
-          <p-select class="operator-select" formControlName="operator" size="small" [options]="propertyOperator.get(properties.value[j].type)">
+          @let type = properties.value[j].type || 'string';
+          <p-select class="operator-select" formControlName="operator" size="small" [options]="propertyOperator.get(type)">
             <ng-template #header>
               <div class="tabs-container">
 
@@ -22,7 +23,7 @@
 
           </p-select>
 
-          <input pInputText [type]="properties.value[j].type" formControlName="value" placeholder="Select a value"/>
+          <input pInputText [type]="type" formControlName="value" placeholder="Select a value"/>
           @if (properties.value[j].operator == 'in between') {
             <span>and</span>
             <input pInputText type="number" formControlName="valueTo" placeholder="Select a value"/>
