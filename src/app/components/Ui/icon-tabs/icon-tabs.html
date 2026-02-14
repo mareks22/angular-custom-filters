@@ -1,0 +1,8 @@
+<div class="tab-container">
+  @for (tab of tabs; track tab; let i = $index) {
+    <div (click)="selectTab(i)" [class.active]="selectedTab?.value == tab.value" class="tab-item">
+      <i class="pi {{ tab.icon }} tab-item-icon" [style]="`font-size: ${{iconSize}};`"></i>
+      <span class="tab-item-label">{{ tab.label }}</span>
+    </div>
+  }
+</div>

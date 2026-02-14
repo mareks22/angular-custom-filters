@@ -1,0 +1,30 @@
+.editable-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  .label-text {
+    font-size: 1rem;
+  }
+
+  .edit-icon,
+  .save-icon {
+    cursor: pointer;
+    color: #666;
+    &:hover {
+      color: #333;
+    }
+  }
+
+  input {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+
+    &:focus {
+      border-color: #007bff;
+    }
+  }
+}

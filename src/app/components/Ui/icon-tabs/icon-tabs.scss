@@ -1,0 +1,24 @@
+.tab-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+
+}
+
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  &-icon {
+
+  }
+  &-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  &.active {
+    border-bottom: 2px solid var(--primary-color);
+  }
+}

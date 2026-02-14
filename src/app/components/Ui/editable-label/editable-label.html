@@ -1,0 +1,17 @@
+<div class="editable-label">
+  @if (!isEditing) {
+    <span class="label-text">{{ value }}</span>
+    <i class="pi pi-pencil edit-icon" (click)="enableEdit()"></i>
+  } @else {
+    <input
+      pInputText
+      type="text"
+      [(ngModel)]="tempValue"
+      (keyup.enter)="save()"
+      (keyup.escape)="cancel()"
+      (blur)="save()"
+      autoFocus
+    />
+    <i class="pi pi-check save-icon" (click)="save()"></i>
+  }
+</div>
