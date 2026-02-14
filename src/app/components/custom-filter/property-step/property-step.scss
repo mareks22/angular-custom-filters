@@ -1,0 +1,14 @@
+.properties {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.property-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.tabs-container {
+  padding: 1rem 1rem;
+}

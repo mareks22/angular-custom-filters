@@ -1,0 +1,42 @@
+<div [formGroup]="eventForm">
+  <div class="properties" [formArrayName]="'properties'">
+
+    @for (prop of properties.controls; track prop; let j = $index) {
+      <div (mouseleave)="currentlyHovered.set(null)" (mouseenter)="currentlyHovered.set(j)" [formGroupName]="j"
+           class="property-row">
+        <p-select placeholder="Select an attribute" [filter]="true" optionLabel="property" optionValue="property"
+                  [options]="getAvailableProperties()"
+                  size="small" formControlName="name" (onChange)="onPropertyNameChange(j)">
+        </p-select>
+
+        @if (properties.value[j].name) {
+          <p-select class="operator-select" formControlName="operator" size="small" [options]="propertyOperator.get(properties.value[j].type)">
+            <ng-template #header>
+              <div class="tabs-container">
+
+                <app-icon-tabs iconSize="1.2rem" (tabChange)="onTabChange($event, j)" [tabs]="tabs"
+                               [activeTab]="getActiveTab(j)"></app-icon-tabs>
+              </div>
+
+            </ng-template>
+
+          </p-select>
+
+          <input pInputText [type]="properties.value[j].type" formControlName="value" placeholder="Select a value"/>
+          @if (properties.value[j].operator == 'in between') {
+            <span>and</span>
+            <input pInputText type="number" formControlName="valueTo" placeholder="Select a value"/>
+          }
+
+        }
+
+        @if (currentlyHovered() == j) {
+
+          <i (click)="removeProperty(j)" class="pi pi-times"></i>
+        }
+      </div>
+    }
+    <p-button variant="text" type="button" [disabled]="!eventType" (click)="addProperty()">+ Add Property</p-button>
+  </div>
+
+</div>
