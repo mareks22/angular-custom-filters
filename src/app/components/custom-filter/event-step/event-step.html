@@ -22,10 +22,12 @@
         class="event-selectors_type"
         size="small"
         [filter]="true"
+        filterPlaceholder="Filter events..."
         formControlName="type"
         [options]="eventOptions"
         (onChange)="onEventTypeChange($event)"
         placeholder="Select Event"
+        panelStyleClass="event-select-panel"
       ></p-select>
     </div>
 

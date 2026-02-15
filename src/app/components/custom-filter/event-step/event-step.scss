@@ -48,3 +48,9 @@
     }
   }
 }
+
+:host ::ng-deep {
+  .event-select-panel {
+    min-width: 300px !important;
+  }
+}
