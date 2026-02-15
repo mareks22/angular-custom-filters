@@ -57,14 +57,19 @@ export class FilterFormService {
       steps: rawValue.events.map(event => ({
         event_type: event.type || '',
         display_name: event.name || '',
-        filters: event.properties.map(prop => ({
-          attribute: prop.name || '',
-          operator: prop.operator || '',
-          value: prop.value || '',
-          // Only include valueTo if operator is 'in between'
-          ...(prop.operator === 'in between' ? {value_to: prop.valueTo} : {}),
-          type: (prop.type as 'string' | 'number') || 'string'
-        }))
+        filters: event.properties.map(prop => {
+          const isNumber = prop.type === 'number';
+          return {
+            attribute: prop.name || '',
+            operator: prop.operator || '',
+            value: isNumber && prop.value !== '' ? Number(prop.value) : (prop.value || ''),
+            // Only include valueTo if operator is 'in between'
+            ...(prop.operator === 'in between' ? {
+              value_to: isNumber && prop.valueTo !== '' ? Number(prop.valueTo) : (prop.valueTo || '')
+            } : {}),
+            type: (prop.type as 'string' | 'number') || 'string'
+          };
+        })
       }))
     };
   }
