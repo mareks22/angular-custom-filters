@@ -54,6 +54,11 @@ export class CustomFilter implements OnInit {
     this.events.removeAt(index);
   }
 
+  discardForm(): void {
+    this.events.clear();
+    this.addEvent();
+  }
+
   copyEvent(event: any): void {
     const eventGroup = this.eventGroup();
     eventGroup.patchValue({

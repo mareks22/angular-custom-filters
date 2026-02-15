@@ -4,10 +4,16 @@
   border-radius: 1rem;
   box-shadow: 0 2px rgb(0 0 0 / 0.05);
 }
-
-.header {
+.header-container {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  &-title {
+    display: flex;
+  }
 }
+
 
 .event-card {
   background-color: #ffffff;

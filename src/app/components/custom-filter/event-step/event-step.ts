@@ -19,6 +19,7 @@ export class EventStep {
   @Input({ required: true }) index!: number;
   @Input({ required: true }) eventOptions: { label: string; value: string }[] = [];
   @Input({ required: true }) eventsList: EventSchema[] = [];
+  @Input({ required: true }) isFirst: boolean = false;
 
   @Output() removeEvent = new EventEmitter<number>();
   @Output() copyEvent = new EventEmitter<any>();

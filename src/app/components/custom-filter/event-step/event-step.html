@@ -9,8 +9,10 @@
     </div>
 
     <div class="step-icons">
+      @if(!isFirst) {
+        <i (click)="removeEvent.emit(index)" class="pi pi-trash"></i>
+      }
       <i (click)="onCopyEvent()" class="pi pi-copy"></i>
-      <i (click)="removeEvent.emit(index)" class="pi pi-trash"></i>
     </div>
   </div>
 

@@ -1,5 +1,8 @@
 <div class="wrapper">
-  <h4 class="header">CUSTOMER FILTER</h4>
+  <div class="header-container">
+    <h4 class="header-container-title">CUSTOMER FILTER</h4>
+    <p-button severity="danger" variant="text" type="button" (click)="discardForm()">Discard filters</p-button>
+  </div>
   <form [formGroup]="form" (ngSubmit)="submit()" class="content">
     <div class="event-card" formArrayName="events">
       @for (event of events.controls; track event; let i = $index) {
@@ -10,6 +13,7 @@
           [eventsList]="eventsList()"
           (removeEvent)="removeEvent($event)"
           (copyEvent)="copyEvent($event)"
+          [isFirst]="i == 0"
         ></app-event-step>
       }
 

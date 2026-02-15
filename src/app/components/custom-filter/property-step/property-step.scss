@@ -9,6 +9,22 @@
   gap: 1rem;
   align-items: center;
 }
+
+:host ::ng-deep {
+  .attribute-select-panel {
+    min-width: 300px !important;
+  }
+
+  .operator-select-panel {
+    min-width: 200px !important;
+  }
+}
+
 .tabs-container {
   padding: 1rem 1rem;
 }
+
+.add-property-btn {
+  width: fit-content;
+}
+
