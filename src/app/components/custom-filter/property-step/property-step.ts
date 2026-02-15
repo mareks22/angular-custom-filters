@@ -59,11 +59,8 @@ export class PropertyStep {
 
   onPropertyNameChange(propIndex: number) {
     const propGroup = this.properties.at(propIndex);
-    const eventType = this.eventType;
-    const propName = propGroup.controls.name.value;
-
-    const eventDef = this.eventsList.find((e) => e.type === eventType);
-    const propDef = eventDef?.properties.find((p) => p.property === propName);
+    const eventDef = this.eventsList.find((e) => e.type === this.eventType);
+    const propDef = eventDef?.properties.find((p) => p.property === propGroup.controls.name.value);
 
     if (propDef) {
       propGroup.controls.type.setValue(propDef.type);

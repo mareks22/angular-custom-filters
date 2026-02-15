@@ -2,7 +2,7 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ButtonModule } from 'primeng/button';
 import { ApiEvents } from '../../services/api-events';
-import { EventForm, EventSchema, FilterForm } from '../../models/event';
+import { EventForm, EventSchema, FilterForm, EventValue } from '../../models/event';
 import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { EventStep } from './event-step/event-step';
@@ -26,11 +26,9 @@ export class CustomFilter implements OnInit {
   formValue = toSignal(this.form.valueChanges.pipe(startWith(this.form.value)));
 
   disableDiscardBtn = computed(() => {
-    const value = this.formValue();
-    const events = value?.events || [];
+    const events = this.formValue()?.events || [];
     if (events.length > 1) return false;
-    const firstEventType = events[0]?.type;
-    return !firstEventType || firstEventType === '';
+    return !events[0]?.type;
   });
 
   ngOnInit() {
@@ -62,7 +60,7 @@ export class CustomFilter implements OnInit {
     this.addEvent();
   }
 
-  copyEvent(event: any): void {
+  copyEvent(event: EventValue): void {
     this.events.push(this.formService.copyEventGroup(event));
   }
 

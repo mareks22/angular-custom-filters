@@ -59,27 +59,29 @@ export class FilterFormService {
   }
 
   getFilterData(form: FormGroup<FilterForm>): FilterResult {
-    const rawValue = form.getRawValue();
+    const { events } = form.getRawValue();
 
     return {
-      steps: rawValue.events.map((event) => ({
+      steps: events.map((event) => ({
         event_type: event.type || '',
         display_name: event.name || '',
         filters: event.properties.map((prop) => {
           const isNumber = prop.type === 'number';
-          return {
+          const operator = prop.operator || '';
+          const value = isNumber && prop.value !== '' ? Number(prop.value) : prop.value || '';
+
+          const filter: any = {
             attribute: prop.name || '',
-            operator: prop.operator || '',
-            value: isNumber && prop.value !== '' ? Number(prop.value) : prop.value || '',
-            // Only include valueTo if operator is 'in between'
-            ...(prop.operator === 'in between'
-              ? {
-                  value_to:
-                    isNumber && prop.valueTo !== '' ? Number(prop.valueTo) : prop.valueTo || '',
-                }
-              : {}),
-            type: (prop.type as 'string' | 'number') || 'string',
+            operator,
+            value,
+            type: prop.type || 'string',
           };
+
+          if (operator === 'in between') {
+            filter.value_to = isNumber && prop.valueTo !== '' ? Number(prop.valueTo) : prop.valueTo || '';
+          }
+
+          return filter;
         }),
       })),
     };

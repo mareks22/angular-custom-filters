@@ -36,9 +36,7 @@ export class EventStep {
     if (!currentName || currentName === 'Unnamed step') {
       this.eventForm.controls['name'].setValue(event.value);
     }
-    while (this.properties.length !== 0) {
-      this.properties.removeAt(0);
-    }
+    this.properties.clear();
   }
 
   onCopyEvent() {
