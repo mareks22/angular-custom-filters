@@ -1,59 +1,91 @@
-# CustomFilters
+# Angular Custom Filter Tool
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.16.
+A professional, feature-rich custom filter builder developed with Angular 20. This project demonstrates advanced reactive form handling, component composition, and modern Angular best practices (Zoneless, Signals, and Typed Forms).
 
-## Development server
+## 🚀 Key Features
 
-To start a local development server, run:
+- **Dynamic Event Steps**: Add, remove, and duplicate filter steps iteratively.
+- **Typed Reactive Forms**: Fully type-safe `FormGroup` and `FormArray` implementation for robust data handling.
+- **Modern UI Components**: Reusable UI atoms like `EditableLabel` and `IconTabs` built from scratch.
+- **PrimeNG Integration**: Leveraging PrimeNG 20 for high-quality UI components with a customized theme.
+- **Zoneless Architecture**: Developed using Angular's modern zoneless change detection for optimal performance.
+- **Comprehensive Testing**: Full unit test coverage for components and services using `ChromeHeadless`.
 
+## 🛠️ Technical Stack
+
+- **Framework**: Angular 20 (Zoneless)
+- **UI Library**: PrimeNG 20
+- **Icons**: PrimeIcons
+- **Styling**: SCSS
+- **Formatting**: Prettier
+- **Testing**: Jasmine & Karma
+
+## 🏃 Getting Started
+
+### Prerequisites
+
+- Node.js (Latest LTS recommended)
+- Angular CLI
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mareks22/angular-custom-filters.git
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Development
+
+Run the development server:
 ```bash
-ng serve
+npm start
+```
+Navigate to `http://localhost:4200/`.
+
+### Testing
+
+Run the full test suite:
+```bash
+npm test
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+Run tests in headless mode (CI/CD friendly):
 ```bash
-ng generate component component-name
+npm run test:headless
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Formatting
 
+To ensure consistent code style:
 ```bash
-ng generate --help
+npm run format
 ```
 
-## Building
+## 📊 Data Model
 
-To build the project run:
-
-```bash
-ng build
+The application produces a structured JSON output designed for backend consumption. Example output:
+```json
+{
+  "steps": [
+    {
+      "event_type": "purchase",
+      "display_name": "Product Purchase",
+      "filters": [
+        {
+          "attribute": "price",
+          "operator": "greater than",
+          "value": 100,
+          "type": "number"
+        }
+      ]
+    }
+  ]
+}
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+Developed by **Marek S.** for the Senior Angular Developer Interview Assignment.
