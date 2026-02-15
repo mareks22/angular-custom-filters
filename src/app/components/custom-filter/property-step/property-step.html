@@ -5,7 +5,7 @@
       <div (mouseleave)="currentlyHovered.set(null)" (mouseenter)="currentlyHovered.set(index)" [formGroupName]="index"
            class="property-row">
         <p-select placeholder="Select an attribute" [filter]="true" optionLabel="property" optionValue="property"
-                  [options]="getAvailableProperties()" panelStyleClass="attribute-select-panel"
+                  [options]="availableProperties()" panelStyleClass="attribute-select-panel"
                   size="small" formControlName="name" (onChange)="onPropertyNameChange(index)">
         </p-select>
 

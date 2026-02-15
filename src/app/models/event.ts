@@ -18,6 +18,20 @@ export interface FilterForm {
   events: FormArray<FormGroup<EventForm>>;
 }
 
+export interface PropertyValue {
+  name: string | null;
+  type: string | null;
+  value: string | null;
+  valueTo: string | null;
+  operator: string | null;
+}
+
+export interface EventValue {
+  type: string | null;
+  name: string | null;
+  properties: PropertyValue[];
+}
+
 export interface EventPropertyDefinition {
   property: string;
   type: 'string' | 'number';

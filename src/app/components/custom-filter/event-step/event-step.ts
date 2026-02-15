@@ -1,9 +1,9 @@
-import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Select, SelectChangeEvent } from 'primeng/select';
 import { EditableLabel } from '../../Ui/editable-label/editable-label';
 import { EventForm, EventSchema, PropertyForm } from '../../../models/event';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Divider } from 'primeng/divider';
 import { PropertyStep } from '../property-step/property-step';
 
@@ -14,7 +14,6 @@ import { PropertyStep } from '../property-step/property-step';
   styleUrl: './event-step.scss',
 })
 export class EventStep {
-  private fb = inject(FormBuilder);
   @Input({ required: true }) eventForm!: FormGroup<EventForm>;
   @Input({ required: true }) index!: number;
   @Input({ required: true }) eventOptions: { label: string; value: string }[] = [];

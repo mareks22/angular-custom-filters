@@ -1,11 +1,12 @@
-import {Component, Input, inject, signal} from '@angular/core';
+import {Component, Input, inject, signal, computed} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormArray, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {Select} from 'primeng/select';
 import {Button} from 'primeng/button';
-import {EventForm, EventPropertyDefinition, EventSchema, PropertyForm} from '../../../models/event';
+import {EventForm, EventSchema, PropertyForm} from '../../../models/event';
 import {InputText} from 'primeng/inputtext';
 import {IconTab, IconTabSchema} from '../../Ui/icon-tabs/icon-tabs';
+import {FilterFormService} from '../../../services/filter-form.service';
 
 @Component({
   selector: 'app-property-step',
@@ -14,13 +15,17 @@ import {IconTab, IconTabSchema} from '../../Ui/icon-tabs/icon-tabs';
   styleUrl: './property-step.scss',
 })
 export class PropertyStep {
-  private fb = inject(FormBuilder);
+  private formService = inject(FilterFormService);
 
   @Input({required: true}) eventForm!: FormGroup<EventForm>;
   @Input({required: true}) eventsList: EventSchema[] = [];
   @Input({required: true}) eventType!: string | null;
 
   currentlyHovered = signal<number | null>(null);
+  availableProperties = computed(() => {
+    const event = this.eventsList.find((e) => e.type === this.eventType);
+    return event ? event.properties : []
+  });
 
   propertyOperator = new Map<string, string[]>([
     ['string', ['equals', 'does not equal', 'contains', 'does not contain']],
@@ -46,15 +51,7 @@ export class PropertyStep {
 
 
   addProperty(): void {
-    this.properties.push(
-      this.fb.group<PropertyForm>({
-        name: this.fb.control('', { validators: [Validators.required], nonNullable: false }),
-        type: this.fb.control('', { nonNullable: false }),
-        value: this.fb.control('', { nonNullable: false }),
-        valueTo: this.fb.control('', { nonNullable: false }),
-        operator: this.fb.control('equals', { nonNullable: false })
-      }),
-    );
+    this.properties.push(this.formService.createPropertyForm());
   }
 
   removeProperty(propIndex: number): void {
@@ -74,15 +71,6 @@ export class PropertyStep {
     }
   }
 
-  getAvailableProperties(): EventPropertyDefinition[] {
-    const event = this.eventsList.find((e) => e.type === this.eventType);
-    return event ? event.properties : [];
-  }
-
-  /**
-   * Returns the configuration for the active tab based on the property's data type.
-   * This ensures the UI stays in sync when the underlying form model changes.
-   */
   getActiveTab(index: number): IconTabSchema | null {
     const type = this.properties.at(index).controls.type.value;
     return this.tabs.find(t => t.value === type) || null;
