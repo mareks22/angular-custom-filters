@@ -4,7 +4,7 @@
       <span class="step-number">{{ index + 1 }}. Step:</span>
       <app-editable-label
         formControlName="name"
-        [value]="'Event #' + (index + 1)"
+        [fallbackValue]="'Event #' + (index + 1)"
       ></app-editable-label>
     </div>
 

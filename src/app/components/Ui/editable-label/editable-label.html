@@ -1,7 +1,9 @@
 <div class="editable-label">
   @if (!isEditing) {
-    <span class="label-text">{{ value }}</span>
-    <i class="pi pi-pencil edit-icon" (click)="enableEdit()"></i>
+    <span class="label-text">{{ value || fallbackValue }}</span>
+    @if (editable) {
+      <i class="pi pi-pencil edit-icon" (click)="enableEdit()"></i>
+    }
   } @else {
     <input
       pInputText
@@ -10,6 +12,7 @@
       (keyup.enter)="save()"
       (keyup.escape)="cancel()"
       (blur)="save()"
+      [placeholder]="fallbackValue"
       autoFocus
     />
     <i class="pi pi-check save-icon" (click)="save()"></i>

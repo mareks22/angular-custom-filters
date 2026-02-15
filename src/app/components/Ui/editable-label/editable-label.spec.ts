@@ -60,4 +60,20 @@ describe('EditableLabel', () => {
     expect(component.value).toBe('Original');
     expect(component.isEditing).toBeFalse();
   });
+
+  it('should not show pencil icon when editable is false', async () => {
+    fixture.componentRef.setInput('editable', false);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const pencil = fixture.debugElement.query(By.css('.edit-icon'));
+    expect(pencil).toBeFalsy();
+  });
+
+  it('should not enable edit mode when editable is false', () => {
+    component.editable = false;
+    component.enableEdit();
+    expect(component.isEditing).toBeFalse();
+  });
 });

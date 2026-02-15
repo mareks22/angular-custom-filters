@@ -18,6 +18,8 @@ import { InputText } from 'primeng/inputtext';
 })
 export class EditableLabel implements ControlValueAccessor {
   @Input() value: string = '';
+  @Input() fallbackValue: string = '';
+  @Input() editable: boolean = true;
   @Output() valueChange = new EventEmitter<string>();
 
   isEditing: boolean = false;
@@ -39,12 +41,13 @@ export class EditableLabel implements ControlValueAccessor {
   }
 
   enableEdit() {
+    if (!this.editable) return;
     this.isEditing = true;
-    this.tempValue = this.value;
+    this.tempValue = this.value || '';
   }
 
   save() {
-    this.value = this.tempValue;
+    this.value = this.tempValue || '';
     this.valueChange.emit(this.value);
     this.onChange(this.value);
     this.onTouched();

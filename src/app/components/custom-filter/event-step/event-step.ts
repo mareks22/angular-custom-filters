@@ -32,7 +32,10 @@ export class EventStep {
   }
 
   onEventTypeChange(event: SelectChangeEvent) {
-    this.eventForm.controls['name'].setValue(event.value);
+    const currentName = this.eventForm.controls['name'].value;
+    if (!currentName || currentName === 'Unnamed step') {
+      this.eventForm.controls['name'].setValue(event.value);
+    }
     while (this.properties.length !== 0) {
       this.properties.removeAt(0);
     }
