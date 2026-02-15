@@ -1,4 +1,4 @@
-import {FormControl, FormArray, FormGroup} from '@angular/forms';
+import { FormControl, FormArray, FormGroup } from '@angular/forms';
 
 export interface PropertyForm {
   name: FormControl<string | null>;
@@ -66,4 +66,3 @@ export interface FilterResult {
     }[];
   }[];
 }
-

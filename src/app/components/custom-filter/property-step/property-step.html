@@ -1,44 +1,72 @@
 <div [formGroup]="eventForm">
   <div class="properties" [formArrayName]="'properties'">
-
     @for (prop of properties.controls; track prop; let index = $index) {
-      <div (mouseleave)="currentlyHovered.set(null)" (mouseenter)="currentlyHovered.set(index)" [formGroupName]="index"
-           class="property-row">
-        <p-select placeholder="Select an attribute" [filter]="true" optionLabel="property" optionValue="property"
-                  [options]="availableProperties()" panelStyleClass="attribute-select-panel"
-                  size="small" formControlName="name" (onChange)="onPropertyNameChange(index)">
+      <div
+        (mouseleave)="currentlyHovered.set(null)"
+        (mouseenter)="currentlyHovered.set(index)"
+        [formGroupName]="index"
+        class="property-row"
+      >
+        <p-select
+          placeholder="Select an attribute"
+          [filter]="true"
+          optionLabel="property"
+          optionValue="property"
+          [options]="availableProperties()"
+          panelStyleClass="attribute-select-panel"
+          size="small"
+          formControlName="name"
+          (onChange)="onPropertyNameChange(index)"
+        >
         </p-select>
 
         @if (properties.value[index].name) {
           @let type = properties.value[index].type || 'string';
-          <p-select class="operator-select" formControlName="operator" size="small"
-                    [options]="propertyOperator.get(type)" panelStyleClass="operator-select-panel">
+          <p-select
+            class="operator-select"
+            formControlName="operator"
+            size="small"
+            [options]="propertyOperator.get(type)"
+            panelStyleClass="operator-select-panel"
+          >
             <ng-template #header>
               <div class="tabs-container">
-                <app-icon-tabs iconSize="1.2rem" (tabChange)="onTabChange($event, index)" [tabs]="tabs"
-                               [activeTab]="getActiveTab(index)"></app-icon-tabs>
+                <app-icon-tabs
+                  iconSize="1.2rem"
+                  (tabChange)="onTabChange($event, index)"
+                  [tabs]="tabs"
+                  [activeTab]="getActiveTab(index)"
+                ></app-icon-tabs>
               </div>
             </ng-template>
-
           </p-select>
 
-          <input pInputText [type]="type" formControlName="value" placeholder="Select a value"/>
+          <input pInputText [type]="type" formControlName="value" placeholder="Select a value" />
           @if (properties.value[index].operator == 'in between') {
             <span>and</span>
-            <input pInputText type="number" formControlName="valueTo" placeholder="Select a value"/>
+            <input
+              pInputText
+              type="number"
+              formControlName="valueTo"
+              placeholder="Select a value"
+            />
           }
-
         }
 
         @if (currentlyHovered() == index) {
-
           <i (click)="removeProperty(index)" class="pi pi-times"></i>
         }
       </div>
     }
-    <p-button class="add-property-btn" severity="secondary" variant="text" type="button" [disabled]="!eventType" (click)="addProperty()">
+    <p-button
+      class="add-property-btn"
+      severity="secondary"
+      variant="text"
+      type="button"
+      [disabled]="!eventType"
+      (click)="addProperty()"
+    >
       {{ properties.value.length == 0 ? '+ Add event attributes' : 'Refine more' }}
     </p-button>
   </div>
-
 </div>

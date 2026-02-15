@@ -8,9 +8,8 @@ describe('PropertyStep', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PropertyStep]
-    })
-    .compileComponents();
+      imports: [PropertyStep],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PropertyStep);
     component = fixture.componentInstance;

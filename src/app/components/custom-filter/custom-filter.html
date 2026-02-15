@@ -1,7 +1,9 @@
 <div class="wrapper">
   <div class="header-container">
     <h4 class="header-container-title">CUSTOMER FILTER</h4>
-    <p-button severity="danger" variant="text" type="button" (click)="discardForm()">Discard filters</p-button>
+    <p-button severity="danger" variant="text" type="button" (click)="discardForm()"
+      >Discard filters
+    </p-button>
   </div>
   <form [formGroup]="form" (ngSubmit)="submit()" class="content">
     <div class="event-card" formArrayName="events">
@@ -18,9 +20,11 @@
       }
 
       <div class="event-card-footer">
-        <p-button severity="secondary" variant="text" type="button" (click)="addEvent()">+ Add Funnel Step</p-button>
+        <p-button severity="secondary" variant="text" type="button" (click)="addEvent()"
+          >+ Add Funnel Step
+        </p-button>
       </div>
     </div>
-    <p-button  type="submit" label="Apply filters"></p-button>
+    <p-button type="submit" label="Apply filters"></p-button>
   </form>
 </div>

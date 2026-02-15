@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-icon-tabs',
@@ -6,8 +6,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   templateUrl: './icon-tabs.html',
   styleUrl: './icon-tabs.scss',
 })
-export class IconTab implements OnInit {
-
+export class IconTabs implements OnInit {
   @Input() tabs: IconTabSchema[] = [];
   @Input() iconSize: string = '1rem';
   private _activeTab: IconTabSchema | null = null;
@@ -17,13 +16,14 @@ export class IconTab implements OnInit {
       this.selectedTab = value;
     }
   }
+
   get activeTab(): IconTabSchema | null {
     return this._activeTab;
   }
 
   @Output() tabChange = new EventEmitter<IconTabSchema>();
 
-  selectedTab: IconTabSchema | null = null
+  selectedTab: IconTabSchema | null = null;
 
   ngOnInit(): void {
     if (this.activeTab) {
@@ -44,5 +44,3 @@ export interface IconTabSchema {
   label: string;
   value: string;
 }
-
-

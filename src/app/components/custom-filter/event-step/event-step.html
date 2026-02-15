@@ -9,7 +9,7 @@
     </div>
 
     <div class="step-icons">
-      @if(!isFirst) {
+      @if (!isFirst) {
         <i (click)="removeEvent.emit(index)" class="pi pi-trash"></i>
       }
       <i (click)="onCopyEvent()" class="pi pi-copy"></i>
@@ -17,7 +17,6 @@
   </div>
 
   <div class="event-selectors">
-
     <div>
       <p-select
         class="event-selectors_type"
@@ -30,7 +29,6 @@
       ></p-select>
     </div>
 
-
     @if (eventType) {
       <app-property-step
         [eventForm]="eventForm"
@@ -38,9 +36,6 @@
         [eventType]="eventType"
       ></app-property-step>
     }
-
   </div>
-
-
 </div>
 <p-divider class="divider"></p-divider>
