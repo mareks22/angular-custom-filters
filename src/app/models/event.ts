@@ -52,3 +52,18 @@ export interface EventSchema {
 export interface RootEventConfig {
   events: EventSchema[];
 }
+
+export interface FilterResult {
+  steps: {
+    event_type: string;
+    display_name: string;
+    filters: {
+      attribute: string;
+      operator: string;
+      value: string | number;
+      value_to?: string | number | null;
+      type: 'string' | 'number';
+    }[];
+  }[];
+}
+

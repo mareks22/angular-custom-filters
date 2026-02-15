@@ -60,6 +60,7 @@ export class CustomFilter implements OnInit {
   }
 
   submit(): void {
-    console.log(this.form.value);
+    const dataModel = this.formService.getFilterData(this.form);
+    console.log('Final Data Model:', dataModel);
   }
 }
